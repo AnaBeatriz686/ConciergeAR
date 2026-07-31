@@ -23,10 +23,14 @@ Aplicação Web de Realidade Aumentada (WebXR) que permite explorar cardápios d
   - Certificados key.pem e cert.pem na raiz do projeto.
  
   ### Gerando um certificado autoassinado:
+```bash
   openssl req -nodes -new -x509 -keyout key.pem -out cert.pem -days 365
+```
 
   ### Rodando o projeto:
+```bash
   node server.js
+```
 
   ## Créditos dos modelos:
   - "Japanese Restaurant "Inakaya"" (https://skfb.ly/6A6Yv) by Jellepostma is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
