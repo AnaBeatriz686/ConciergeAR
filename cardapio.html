@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio Concierge</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Saira SemiCondensed', monospace;
+            background: linear-gradient(135deg, #000000 0%, #101010 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        h2 { 
+            text-align: center; 
+            font-weight: 300; }
+
+        .filtros {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .botao-filtro {
+            background: #333;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .botao-filtro.ativo {
+            background: #3b5c7a; 
+        }
+
+        .lista-restaurantes {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(54, 53, 53, 0.484);
+            border-radius: 15px;
+            display: none;
+        }
+
+        .card-info { 
+            padding: 15px; 
+        }
+
+        .card-nome { 
+            font-size: 1.2rem; 
+            font-weight: bold; 
+            margin-bottom: 5px; 
+        }
+
+        .card-categoria {
+            color: #888; 
+            font-size: 0.9rem; 
+            margin-bottom: 15px; 
+        }
+
+        .acoes { 
+            display: flex; 
+            gap: 10px; 
+        }
+
+        .botao-ar {
+            flex: 2;
+            background: #4975a4;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .botao-ar:hover {
+            background: #3b5c7a;
+        }
+
+        .botao-maps {
+            flex: 1;
+            background: #3b5c7a;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .botao-maps:hover {
+            background: #2a3b4c;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h2>Escolha um Restaurante</h2>
+
+    <div class="filtros">
+        <button class="botao-filtro" onclick="filtrar('todos', this)">Todos</button>
+        <button class="botao-filtro" onclick="filtrar('japonesa', this)">Japonesa</button>
+        <button class="botao-filtro" onclick="filtrar('italiana', this)">Italiana</button>
+        <button class="botao-filtro" onclick="filtrar('padaria', this)">Padaria</button>
+        <button class="botao-filtro" onclick="filtrar('pizzaria', this)">Fast Food</button>
+    </div>
+
+    <div class="lista-restaurantes">
+        
+        <div class="card" data-cat="japonesa">
+            <div class="card-info">
+                <div class="card-nome">SushiZen</div>
+                <div class="card-categoria">Culinária Japonesa</div>
+                <div class="acoes">
+                    <a href="ar.html?res=japones" class="botao-ar">EXPERIÊNCIA AR</a>
+                    <a href="https://maps.app.goo.gl/4A4Bw5A3BWmSsbPE7" target="_blank" class="botao-maps">VER NO MAPS</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-cat="italiana">
+            <div class="card-info">
+                <div class="card-nome">Bella Pasta</div>
+                <div class="card-categoria">Culinária Italiana</div>
+                <div class="acoes">
+                    <a href="ar.html?res=italiano" class="botao-ar">EXPERIÊNCIA AR</a>
+                    <a href="https://maps.app.goo.gl/9JcrjnWSZNL5eDEr7" target="_blank" class="botao-maps">VER NO MAPS</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-cat="padaria">
+            <div class="card-info">
+                <div class="card-nome">Pandor</div>
+                <div class="card-categoria">Padaria</div>
+                <div class="acoes">
+                    <a href="ar.html?res=padaria" class="botao-ar">EXPERIÊNCIA AR</a>
+                    <a href="https://maps.app.goo.gl/hpWHNRe3NVBtPKFv8" target="_blank" class="botao-maps">VER NO MAPS</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-cat="pizzaria">
+            <div class="card-info">
+                <div class="card-nome">Pizza Hut</div>
+                <div class="card-categoria">Fast Food</div>
+                <div class="acoes">
+                    <a href="ar.html?res=pizzaria" class="botao-ar">EXPERIÊNCIA AR</a>
+                    <a href="https://maps.app.goo.gl/mrjYppBSPT7TUaRG6" target="_blank" class="botao-maps">VER NO MAPS</a>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+    <script>
+        function filtrar(categoria, elemento) {
+            const cards = document.querySelectorAll('.card');
+            const botoes = document.querySelectorAll('.botao-filtro');
+
+            botoes.forEach(botao => botao.classList.remove('ativo'));
+            
+            if (elemento){
+                elemento.classList.add('ativo');
+            }
+
+            cards.forEach(card => {
+                if (categoria === 'todos' || card.getAttribute('data-cat') === categoria) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        filtrar('todos');
+    </script>
+</body>
+</html>
